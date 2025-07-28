@@ -40,6 +40,24 @@ install-coolercontrol:
     rpm-ostree install -y liquidctl coolercontrol
     echo 'Complete, please reboot to apply changes.'
 
+# Install JetBrains Toolbox | https://www.jetbrains.com/toolbox-app/
+install-jetbrains-toolbox:
+    #!/usr/bin/env bash
+    pushd "$(mktemp -d)"
+    echo "Get latest JetBrains Toolbox version"
+    # Get the json with latest releases
+    curl -sSfL -o releases.json "https://data.services.jetbrains.com/products/releases?code=TBA&latest=true&type=release"
+    # Extract information
+    BUILD_VERSION=$(jq -r '.TBA[0].build' ./releases.json)
+    DOWNLOAD_LINK=$(jq -r '.TBA[0].downloads.linux.link' ./releases.json)
+    CHECKSUM_LINK=$(jq -r '.TBA[0].downloads.linux.checksumLink' ./releases.json)
+    echo "Installing JetBrains Toolbox ${BUILD_VERSION}"
+    curl -sSfL -O "${DOWNLOAD_LINK}"
+    curl -sSfL "${CHECKSUM_LINK}" | sha256sum -c
+    tar zxf jetbrains-toolbox-"${BUILD_VERSION}".tar.gz
+    echo "Launching JetBrains Toolbox"
+    ./jetbrains-toolbox-"${BUILD_VERSION}"/jetbrains-toolbox
+
 alias get-steamcmd := install-steamcmd
 
 # Install SteamCMD (https://developer.valvesoftware.com/wiki/SteamCMD)
@@ -116,12 +134,6 @@ install-adwaita-for-steam:
     else
         echo 'Please install Decky Loader by running "ujust setup-decky install" first, then install CSS Loader from the Decky Plugin Store.'
     fi
-
-# Install Oversteer for Logitech steering wheels
-install-oversteer: distrobox-check-fedora
-    distrobox enter -n fedora -- bash -c 'sudo dnf copr enable -y bazzite-org/oversteer && \
-      sudo dnf install -y oversteer && \
-      distrobox-export --app oversteer'
 
 # Install Resilio Sync, a file synchronization utility powered by BitTorrent
 install-resilio-sync: distrobox-check-fedora
