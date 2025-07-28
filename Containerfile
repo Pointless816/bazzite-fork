@@ -314,7 +314,7 @@ RUN --mount=type=cache,dst=/var/cache \
         rocm-hip \
         rocm-opencl \
         rocm-clinfo \
-        #oid \ #removed
+        #waydroid \ #removed
         cage \
         wlr-randr && \
     mkdir -p /usr/lib/extest/ && \
