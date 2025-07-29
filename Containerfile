@@ -355,7 +355,7 @@ RUN --mount=type=cache,dst=/var/cache \
         opengamepadui \
         mangoapp \
         firejail && \
-    dnf5 -y --enablerepo=fedora install openrgb && \
+    dnf5 -y --repo=fedora install openrgb && \
     /ctx/cleanup
 
 # Install Steam & Lutris, plus supporting packages
