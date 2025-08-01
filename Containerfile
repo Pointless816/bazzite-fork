@@ -352,7 +352,8 @@ RUN --mount=type=cache,dst=/var/cache \
     --mount=type=tmpfs,dst=/tmp \
     dnf5 -y --repo=fedora install openrgb && \
     dnf5 -y install --no-allow-downgrade \
-        akmod-openrgb \
+        #akmod-openrgb \
+        i2c-tools \
         opengamepadui \
         mangoapp \
         firejail && \
