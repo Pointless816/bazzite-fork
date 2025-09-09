@@ -128,7 +128,7 @@ install-emudeck:
 
 #Commented out to provide updates if this code ever changes
 # Install OpenRGB (https://openrgb.org/)
-[group("hardware")]
+#[group("hardware")]
 #install-openrgb: (_install_appimage_file "https://openrgb.org/releases/release_0.9/OpenRGB_0.9_x86_64_b5f46e3.AppImage")
 
 # Install Boxtron, a Steam Play compatibility tool to run DOS games using native Linux DOSBox
