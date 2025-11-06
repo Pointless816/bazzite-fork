@@ -67,11 +67,14 @@ jobs:
           - bazzite-nvidia-open
           - bazzite-gnome-nvidia-open
         include:
-          - fedora_version: 42
+          - fedora_version: 43
             is_latest_version: true
             is_stable_version: true
             kernel_flavor: bazzite # must match a kernel_flavor from akmods repo
-            kernel_version: 6.16.4-116.bazzite.fc42.x86_64 # must match a cached version of the above flavor
+            kernel_version: ${{ (github.ref_name == 'testing' || github.ref_name == 'unstable') && 'latest' || 'latest' }}
+            base_image_flavor: main
+            arch: x86_64
+            #kernel_version: 6.16.4-116.bazzite.fc42.x86_64 # must match a cached version of the above flavor
         exclude:
           - target_image_flavor: surface
           - base_name: bazzite
@@ -357,7 +360,7 @@ jobs:
             done
             log_sum '```'
             DIGEST=$(sudo skopeo inspect --format '{{.Digest}}' ${{ steps.rechunk.outputs.ref }})
-            cosign sign -y --key env://SIGNING_SECRET --new-bundle-format=false \
+            cosign sign -y --key env://SIGNING_SECRET --new-bundle-format=true \
               "${{ steps.registry_case.outputs.lowercase }}/${{ env.IMAGE_NAME }}@$DIGEST"
         env:
           SIGNING_SECRET: ${{ secrets.SIGNING_SECRET }}
