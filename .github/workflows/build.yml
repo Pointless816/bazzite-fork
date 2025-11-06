@@ -72,7 +72,7 @@ jobs:
             is_stable_version: true
             kernel_flavor: bazzite # must match a kernel_flavor from akmods repo
             kernel_version: ${{ (github.ref_name == 'testing' || github.ref_name == 'unstable') && 'latest' || 'latest' }}
-            base_image_flavor: main
+            #base_image_flavor: main
             arch: x86_64
             #kernel_version: 6.16.4-116.bazzite.fc42.x86_64 # must match a cached version of the above flavor
         exclude:
