@@ -342,9 +342,6 @@ jobs:
               log_sum "$dest_image"
             done
             log_sum '```'
-            DIGEST=$(sudo skopeo inspect --format '{{.Digest}}' ${{ steps.rechunk.outputs.ref }})
-            cosign sign -y --key env://SIGNING_SECRET --new-bundle-format=false \
-              "${{ steps.base.outputs.output_image }}@$DIGEST"
         env:
           SIGNING_SECRET: ${{ secrets.SIGNING_SECRET }}
 
