@@ -74,17 +74,6 @@ jobs:
             kernel_version: ${{ (github.ref_name == 'testing' || github.ref_name == 'unstable') && 'latest' || 'latest' }}
             base_image_flavor: main
             arch: x86_64
-            #kernel_version: 6.16.4-116.bazzite.fc42.x86_64 # must match a cached version of the above flavor
-        #exclude:
-          #- base_name: bazzite
-          #  target_nvidia_flavor: nvidia
-          #- base_name: bazzite-deck
-          #  target_nvidia_flavor: nvidia
-          #- base_name: bazzite-deck-nvidia
-          #  target_nvidia_flavor: nvidia
-          #- base_name: bazzite-deck-nvidia
-          #- base_name: bazzite-deck
-          #  target_nvidia_flavor: nvidia
     steps:
       - name: Mount BTRFS for podman storage
         uses: ublue-os/container-storage-action@main
