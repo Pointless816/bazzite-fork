@@ -68,9 +68,6 @@ jobs:
           #- bazzite-gnome-nvidia-open
         include:
           - fedora_version: 43
-            is_latest_version: true
-            is_stable_version: true
-            kernel_flavor: bazzite # must match a kernel_flavor from akmods repo
             kernel_version: ${{ (github.ref_name == 'testing' || github.ref_name == 'unstable') && 'latest' || 'latest' }}
             base_image_flavor: main
             arch: x86_64
