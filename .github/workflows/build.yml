@@ -119,7 +119,7 @@ jobs:
           # Define push and pull registries
           #
           PULL_REGISTRY=ghcr.io/ublue-os
-          PUSH_REGISTRY=ghcr.io/${{ github.repository_owner }}
+          PUSH_REGISTRY=ghcr.io/pointless816
           echo "push_registry=${PUSH_REGISTRY}" >> $GITHUB_OUTPUT
           echo "pull_registry=${PULL_REGISTRY}" >> $GITHUB_OUTPUT
           
