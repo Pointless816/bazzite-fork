@@ -337,7 +337,7 @@ RUN --mount=type=cache,dst=/var/cache \
     --mount=type=bind,from=ctx,source=/,target=/ctx \
     --mount=type=tmpfs,dst=/tmp \
     --mount=type=secret,id=GITHUB_TOKEN \
-    dnf5 -y --allowerasing install \
+    dnf5 -y install --allowerasing \
         gamescope.x86_64 \
         gamescope-libs.x86_64 \
         gamescope-libs.i686 \
