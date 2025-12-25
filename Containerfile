@@ -327,7 +327,7 @@ RUN --mount=type=cache,dst=/var/cache \
         #akmod-openrgb \
         i2c-tools \
         opengamepadui \
-        mangoapp \
+        #mangoapp \
         firejail && \
     /ctx/cleanup
 
