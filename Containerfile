@@ -327,7 +327,7 @@ RUN --mount=type=cache,dst=/var/cache \
         #akmod-openrgb \
         i2c-tools \
         opengamepadui \
-        #mangoapp \
+        mangoapp \
         firejail && \
     /ctx/cleanup
 
@@ -337,7 +337,7 @@ RUN --mount=type=cache,dst=/var/cache \
     --mount=type=bind,from=ctx,source=/,target=/ctx \
     --mount=type=tmpfs,dst=/tmp \
     --mount=type=secret,id=GITHUB_TOKEN \
-    dnf5 -y install \
+    dnf5 -y --allowerasing install \
         gamescope.x86_64 \
         gamescope-libs.x86_64 \
         gamescope-libs.i686 \
