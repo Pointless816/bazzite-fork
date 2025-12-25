@@ -319,8 +319,8 @@ RUN --mount=type=cache,dst=/var/cache \
 #start added        
 RUN --mount=type=cache,dst=/var/cache \
     --mount=type=cache,dst=/var/log \
-    #--mount=type=bind,from=ctx,source=/,target=/ctx \
-    #--mount=type=tmpfs,dst=/tmp \
+    --mount=type=bind,from=ctx,source=/,target=/ctx \
+    --mount=type=tmpfs,dst=/tmp \
     --mount=type=secret,id=GITHUB_TOKEN \
     dnf5 -y --repo=fedora install openrgb && \
     dnf5 -y install --no-allow-downgrade \
