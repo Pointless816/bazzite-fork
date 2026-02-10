@@ -7,7 +7,8 @@ verify-image:
 
     # Define variables
     REF=$(rpm-ostree status --json | jq -r '.deployments[0]["container-image-reference"]' || echo "")
-    BAD="ostree-unverified-registry"
+    # FIXED: Added the trailing colon below so it gets removed during replacement
+    BAD="ostree-unverified-registry:"
     GOOD="ostree-image-signed:docker://"
 
     # Logic: Check for Unverified AND Official
@@ -15,8 +16,10 @@ verify-image:
         echo "⚠️  UNVERIFIED OFFICIAL IMAGE DETECTED"
         echo "Current: $REF"
 
-        # String replacement to build the new target
+        # String replacement: Remove BAD from REF
         CLEAN_REF=${REF#*$BAD}
+
+        # Build the new target
         TARGET="$GOOD$CLEAN_REF"
 
         echo ""
