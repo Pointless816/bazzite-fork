@@ -58,16 +58,16 @@ jobs:
       fail-fast: false
       matrix:
         image:
-          - bazzite
-          - bazzite-gnome
-          - bazzite-deck
-          - bazzite-deck-gnome
-          - bazzite-deck-nvidia
-          - bazzite-deck-nvidia-gnome
-          - bazzite-nvidia
-          - bazzite-gnome-nvidia
+          #- bazzite
+          #- bazzite-gnome
+          #- bazzite-deck
+          #- bazzite-deck-gnome
+          #- bazzite-deck-nvidia
+          #- bazzite-deck-nvidia-gnome
+          #- bazzite-nvidia
+          #- bazzite-gnome-nvidia
           - bazzite-nvidia-open
-          - bazzite-gnome-nvidia-open
+          #- bazzite-gnome-nvidia-open
         include:
           - fedora_version: 43
             kernel_version: ${{ (github.ref_name == 'testing' || github.ref_name == 'unstable') && 'latest' || 'latest' }}
@@ -138,9 +138,10 @@ jobs:
           # Define push and pull registries
           #
           PULL_REGISTRY=ghcr.io/ublue-os
-          PUSH_REGISTRY=ghcr.io/${{ github.repository_owner }}
+          PUSH_REGISTRY=ghcr.io/pointless816
           echo "push_registry=${PUSH_REGISTRY}" >> $GITHUB_OUTPUT
           echo "pull_registry=${PULL_REGISTRY}" >> $GITHUB_OUTPUT
+          
           echo "output_image=${PUSH_REGISTRY}/${{ matrix.image }}" >> $GITHUB_OUTPUT
           BASE_IMAGE="${PULL_REGISTRY}/$BASE_IMAGE_NAME-${{ matrix.base_image_flavor }}:${{ matrix.fedora_version }}"
           echo "base_image=${BASE_IMAGE}" >> $GITHUB_OUTPUT
