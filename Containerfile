@@ -325,7 +325,7 @@ RUN --mount=type=cache,dst=/var/cache \
     --mount=type=bind,from=ctx,source=/,target=/ctx \
     --mount=type=tmpfs,dst=/tmp \
     --mount=type=secret,id=GITHUB_TOKEN \
-    dnf5 --enable-repo=terra-mesa --enable-repo=terra -y install \
+    dnf5 --enable-repo=terra-mesa --enable-repo=terra --skip-broken -y install \
         terra-gamescope.x86_64 \
         terra-gamescope-libs.x86_64 \
         terra-gamescope-libs.i686 \
