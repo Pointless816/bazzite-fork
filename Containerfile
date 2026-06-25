@@ -380,7 +380,7 @@ RUN --mount=type=cache,dst=/var/cache \
         --repo terra-extras \
             uresourced uresourced-dmemcg \
     ; fi && \
-    dnf5 --enable-repo=terra-mesa --enable-repo=terra -y install \
+    dnf5 --enable-repo=terra-mesa --enable-repo=terra -y install --allowerasing \
         terra-gamescope.x86_64 \
         terra-gamescope-libs.x86_64 \
         terra-gamescope-libs.i686 \
